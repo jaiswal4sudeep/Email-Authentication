@@ -13,8 +13,6 @@ class _SignupPageState extends State<SigninPage> {
   late String email;
   late String password;
 
-  final _auth = FirebaseAuth.instance;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,8 +85,9 @@ class _SignupPageState extends State<SigninPage> {
             ElevatedButton(
               onPressed: () async {
                 try {
-                  final newuser = await _auth.createUserWithEmailAndPassword(
-                      email: email, password: password);
+                  final newuser = await FirebaseAuth.instance
+                      .createUserWithEmailAndPassword(
+                          email: email, password: password);
                   if (newuser != null) {
                     Navigator.push(
                         context,
